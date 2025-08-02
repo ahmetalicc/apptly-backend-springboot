@@ -33,6 +33,6 @@ public class AppointmentDto {
     private Long tenantId;
     private String tenantName;
 
-    private Long customerProfileId;
+    private Long customerId;
     private String customerFullname;
 }

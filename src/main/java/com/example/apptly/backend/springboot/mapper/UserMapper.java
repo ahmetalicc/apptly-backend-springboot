@@ -14,7 +14,7 @@ public interface UserMapper {
     @Mapping(source = "role.id", target = "roleId")
     @Mapping(source = "role.name", target = "roleName")
     @Mapping(source = "customerProfile.id", target = "customerProfileId")
-    @Mapping(source = "customerProfile.fullname", target = "customerProfileFullname")
+    @Mapping(source = "customerProfile.fullName", target = "customerProfileFullname")
     UserDto toDto(User user);
 
     @Mapping(target = "tenant", ignore = true)
