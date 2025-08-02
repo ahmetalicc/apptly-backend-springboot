@@ -15,6 +15,10 @@ public class ApiResponseUtil {
     public static <T> ApiResponse<T> success(String message, T data) {
         return success(message, data, HttpStatus.OK);
     }
+
+    public static<T> ApiResponse<T> success(String message){
+        return success(message, null, HttpStatus.OK);
+    }
     public static <T> ApiResponse<T> error(String message, HttpStatus status){
         return new ApiResponse<>(
                 false,
