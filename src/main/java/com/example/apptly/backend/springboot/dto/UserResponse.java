@@ -11,19 +11,15 @@ import java.time.LocalDateTime;
 @NoArgsConstructor
 @AllArgsConstructor
 @Builder
-public class UserDto {
-
+public class UserResponse {
     private Long id;
+    private String firstName;
+    private String lastName;
     private String email;
     private boolean isActive;
     private LocalDateTime createdAt;
-
     private Long tenantId;
     private String tenantName;
-
     private Long roleId;
     private String roleName;
-
-    private Long customerProfileId;
-    private String customerProfileFullname;
 }
