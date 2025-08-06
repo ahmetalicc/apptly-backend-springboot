@@ -19,4 +19,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponseUtil.error(exception.getMessage(), HttpStatus.BAD_REQUEST));
     }
+
+    @ExceptionHandler(NullHandleException.class)
+    public ResponseEntity<ApiResponse<?>> handleNullPointer(NullHandleException exception){
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST)
+                .body(ApiResponseUtil.error(exception.getMessage(), HttpStatus.BAD_REQUEST));
+    }
 }

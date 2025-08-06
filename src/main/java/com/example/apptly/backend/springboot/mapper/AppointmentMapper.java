@@ -16,8 +16,6 @@ public interface AppointmentMapper {
     @Mapping(source = "staff.email", target = "staffEmail")
     @Mapping(source = "tenant.id", target = "tenantId")
     @Mapping(source = "tenant.name", target = "tenantName")
-    @Mapping(source = "customer.id", target = "customerId")
-    @Mapping(source = "customer.fullName", target = "customerFullname")
     AppointmentDto toDto(Appointment appointment);
 
     @Mapping(target = "service", ignore = true)

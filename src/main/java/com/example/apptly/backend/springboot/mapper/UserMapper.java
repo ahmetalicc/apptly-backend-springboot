@@ -1,6 +1,9 @@
 package com.example.apptly.backend.springboot.mapper;
 
-import com.example.apptly.backend.springboot.dto.UserDto;
+import com.example.apptly.backend.springboot.dto.UserRequest;
+import com.example.apptly.backend.springboot.dto.UserResponse;
+import com.example.apptly.backend.springboot.entity.Role;
+import com.example.apptly.backend.springboot.entity.Tenant;
 import com.example.apptly.backend.springboot.entity.User;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -13,17 +16,17 @@ public interface UserMapper {
     @Mapping(source = "tenant.name", target = "tenantName")
     @Mapping(source = "role.id", target = "roleId")
     @Mapping(source = "role.name", target = "roleName")
-    @Mapping(source = "customerProfile.id", target = "customerProfileId")
-    @Mapping(source = "customerProfile.fullName", target = "customerProfileFullname")
-    UserDto toDto(User user);
+    UserResponse toResponse(User user);
 
-    @Mapping(target = "tenant", ignore = true)
-    @Mapping(target = "role", ignore = true)
-    @Mapping(target = "customerProfile", ignore = true)
-    @Mapping(target = "staffAppointments", ignore = true)
-    @Mapping(target = "availabilities", ignore = true)
-    User toEntity(UserDto userDto);
-
-    List<UserDto> toDtoList(List<User> users);
-    List<User> toEntityList(List<UserDto> userDtos);
+    List<UserResponse> toResponseList(List<User> users);
+    default User toEntity(UserRequest userRequest, Tenant tenant, Role role){
+        return User.builder()
+                .email(userRequest.getEmail())
+                .firstName(userRequest.getFirstName())
+                .lastName(userRequest.getLastName())
+                .isActive(userRequest.getIsActive() != null ? userRequest.getIsActive() : false)
+                .tenant(tenant)
+                .role(role)
+                .build();
+    }
 }
