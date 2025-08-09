@@ -31,7 +31,7 @@ public class User {
     @Column(unique = true)
     private String email;
 
-    private boolean isActive = true;
+    private Boolean isActive;
 
     private LocalDateTime createdAt;
 
@@ -57,4 +57,11 @@ public class User {
         this.createdAt = LocalDateTime.now();
     }
 
+    public boolean isActive() {
+        return isActive;
+    }
+
+    public void setActive(boolean isActive) {
+        this.isActive = isActive;
+    }
 }
