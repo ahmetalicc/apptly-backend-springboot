@@ -16,3 +16,9 @@ spring:
     hibernate:
       ddl-auto: update
       show-sql: true
+
+apptly:
+  security:
+    jwt:
+      secret: ${JWT_SECRET}
+      expire: ${JWT_EXPIRE_SECOND}

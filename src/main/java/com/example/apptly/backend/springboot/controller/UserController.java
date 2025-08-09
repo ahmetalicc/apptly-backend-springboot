@@ -2,12 +2,10 @@ package com.example.apptly.backend.springboot.controller;
 
 import com.example.apptly.backend.springboot.common.ApiResponse;
 import com.example.apptly.backend.springboot.common.ApiResponseUtil;
-import com.example.apptly.backend.springboot.dto.UserRequest;
 import com.example.apptly.backend.springboot.dto.UserResponse;
 import com.example.apptly.backend.springboot.dto.UserUpdateRequest;
 import com.example.apptly.backend.springboot.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -19,12 +17,6 @@ import java.util.List;
 public class UserController {
     private final UserService userService;
 
-    @PostMapping
-    public ResponseEntity<ApiResponse<UserResponse>> registerUser(@RequestBody UserRequest userRequest){
-        UserResponse user = userService.registerUser(userRequest);
-        return ResponseEntity.status(HttpStatus.CREATED)
-                .body(ApiResponseUtil.success("User registered successfully", user, HttpStatus.CREATED));
-    }
     @GetMapping
     public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers(){
         List<UserResponse> users = userService.getAllUsers();
