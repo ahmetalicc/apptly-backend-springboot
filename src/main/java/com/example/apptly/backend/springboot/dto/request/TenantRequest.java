@@ -1,4 +1,4 @@
-package com.example.apptly.backend.springboot.dto;
+package com.example.apptly.backend.springboot.dto.request;
 
 import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
@@ -7,10 +7,10 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
+@NoArgsConstructor
 @Builder
-public class RoleRequest {
+public class TenantRequest {
     @NotBlank
     private String name;
 }

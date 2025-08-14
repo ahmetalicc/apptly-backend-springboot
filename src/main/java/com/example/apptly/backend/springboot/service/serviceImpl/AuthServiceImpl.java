@@ -1,8 +1,8 @@
 package com.example.apptly.backend.springboot.service.serviceImpl;
 
-import com.example.apptly.backend.springboot.dto.AuthRequest;
-import com.example.apptly.backend.springboot.dto.AuthResponse;
-import com.example.apptly.backend.springboot.dto.UserResponse;
+import com.example.apptly.backend.springboot.dto.request.AuthRequest;
+import com.example.apptly.backend.springboot.dto.response.AuthResponse;
+import com.example.apptly.backend.springboot.dto.response.UserResponse;
 import com.example.apptly.backend.springboot.entity.User;
 import com.example.apptly.backend.springboot.exception.BadRequestException;
 import com.example.apptly.backend.springboot.exception.ResourceNotFoundException;

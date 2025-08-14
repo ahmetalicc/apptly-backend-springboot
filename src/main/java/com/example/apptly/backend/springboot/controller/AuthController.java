@@ -2,10 +2,10 @@ package com.example.apptly.backend.springboot.controller;
 
 import com.example.apptly.backend.springboot.common.ApiResponse;
 import com.example.apptly.backend.springboot.common.ApiResponseUtil;
-import com.example.apptly.backend.springboot.dto.AuthRequest;
-import com.example.apptly.backend.springboot.dto.AuthResponse;
-import com.example.apptly.backend.springboot.dto.UserRequest;
-import com.example.apptly.backend.springboot.dto.UserResponse;
+import com.example.apptly.backend.springboot.dto.request.AuthRequest;
+import com.example.apptly.backend.springboot.dto.response.AuthResponse;
+import com.example.apptly.backend.springboot.dto.request.UserRequest;
+import com.example.apptly.backend.springboot.dto.response.UserResponse;
 import com.example.apptly.backend.springboot.service.AuthService;
 import com.example.apptly.backend.springboot.service.UserService;
 import lombok.RequiredArgsConstructor;

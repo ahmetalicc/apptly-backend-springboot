@@ -1,8 +1,8 @@
 package com.example.apptly.backend.springboot.service;
 
-import com.example.apptly.backend.springboot.dto.UserRequest;
-import com.example.apptly.backend.springboot.dto.UserResponse;
-import com.example.apptly.backend.springboot.dto.UserUpdateRequest;
+import com.example.apptly.backend.springboot.dto.request.UserRequest;
+import com.example.apptly.backend.springboot.dto.response.UserResponse;
+import com.example.apptly.backend.springboot.dto.request.UserUpdateRequest;
 
 import java.util.List;
 

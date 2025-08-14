@@ -1,4 +1,4 @@
-package com.example.apptly.backend.springboot.dto;
+package com.example.apptly.backend.springboot.dto.request;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class AuthResponse {
-    private String token;
-    private UserResponse user;
+public class AuthRequest {
+    private String email;
+    private String password;
 }
