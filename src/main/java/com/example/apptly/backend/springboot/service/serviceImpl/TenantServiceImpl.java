@@ -1,7 +1,7 @@
 package com.example.apptly.backend.springboot.service.serviceImpl;
 
-import com.example.apptly.backend.springboot.dto.TenantRequest;
-import com.example.apptly.backend.springboot.dto.TenantResponse;
+import com.example.apptly.backend.springboot.dto.request.TenantRequest;
+import com.example.apptly.backend.springboot.dto.response.TenantResponse;
 import com.example.apptly.backend.springboot.entity.Tenant;
 import com.example.apptly.backend.springboot.exception.BadRequestException;
 import com.example.apptly.backend.springboot.exception.ResourceNotFoundException;

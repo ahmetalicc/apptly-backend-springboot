@@ -1,7 +1,7 @@
 package com.example.apptly.backend.springboot.service;
 
-import com.example.apptly.backend.springboot.dto.TenantRequest;
-import com.example.apptly.backend.springboot.dto.TenantResponse;
+import com.example.apptly.backend.springboot.dto.request.TenantRequest;
+import com.example.apptly.backend.springboot.dto.response.TenantResponse;
 
 import java.util.List;
 

@@ -1,7 +1,7 @@
 package com.example.apptly.backend.springboot.mapper;
 
-import com.example.apptly.backend.springboot.dto.UserRequest;
-import com.example.apptly.backend.springboot.dto.UserResponse;
+import com.example.apptly.backend.springboot.dto.request.UserRequest;
+import com.example.apptly.backend.springboot.dto.response.UserResponse;
 import com.example.apptly.backend.springboot.entity.Role;
 import com.example.apptly.backend.springboot.entity.Tenant;
 import com.example.apptly.backend.springboot.entity.User;

@@ -1,4 +1,4 @@
-package com.example.apptly.backend.springboot.dto;
+package com.example.apptly.backend.springboot.dto.request;
 
 import jakarta.annotation.Nullable;
 import jakarta.validation.constraints.Email;

@@ -1,6 +1,5 @@
-package com.example.apptly.backend.springboot.dto;
+package com.example.apptly.backend.springboot.dto.response;
 
-import jakarta.validation.constraints.NotBlank;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -10,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class TenantRequest {
-    @NotBlank
-    private String name;
+public class AuthResponse {
+    private String token;
+    private UserResponse user;
 }

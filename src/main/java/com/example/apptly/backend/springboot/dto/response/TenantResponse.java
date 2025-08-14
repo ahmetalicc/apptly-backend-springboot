@@ -1,4 +1,4 @@
-package com.example.apptly.backend.springboot.dto;
+package com.example.apptly.backend.springboot.dto.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;

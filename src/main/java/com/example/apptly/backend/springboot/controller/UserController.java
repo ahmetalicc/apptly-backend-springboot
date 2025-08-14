@@ -2,8 +2,8 @@ package com.example.apptly.backend.springboot.controller;
 
 import com.example.apptly.backend.springboot.common.ApiResponse;
 import com.example.apptly.backend.springboot.common.ApiResponseUtil;
-import com.example.apptly.backend.springboot.dto.UserResponse;
-import com.example.apptly.backend.springboot.dto.UserUpdateRequest;
+import com.example.apptly.backend.springboot.dto.response.UserResponse;
+import com.example.apptly.backend.springboot.dto.request.UserUpdateRequest;
 import com.example.apptly.backend.springboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.ResponseEntity;

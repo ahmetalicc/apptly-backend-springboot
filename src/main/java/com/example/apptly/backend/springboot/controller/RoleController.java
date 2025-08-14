@@ -2,8 +2,8 @@ package com.example.apptly.backend.springboot.controller;
 
 import com.example.apptly.backend.springboot.common.ApiResponse;
 import com.example.apptly.backend.springboot.common.ApiResponseUtil;
-import com.example.apptly.backend.springboot.dto.RoleRequest;
-import com.example.apptly.backend.springboot.dto.RoleResponse;
+import com.example.apptly.backend.springboot.dto.request.RoleRequest;
+import com.example.apptly.backend.springboot.dto.response.RoleResponse;
 import com.example.apptly.backend.springboot.service.RoleService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;

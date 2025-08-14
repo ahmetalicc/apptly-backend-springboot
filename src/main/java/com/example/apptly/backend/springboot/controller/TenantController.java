@@ -2,8 +2,8 @@ package com.example.apptly.backend.springboot.controller;
 
 import com.example.apptly.backend.springboot.common.ApiResponse;
 import com.example.apptly.backend.springboot.common.ApiResponseUtil;
-import com.example.apptly.backend.springboot.dto.TenantRequest;
-import com.example.apptly.backend.springboot.dto.TenantResponse;
+import com.example.apptly.backend.springboot.dto.request.TenantRequest;
+import com.example.apptly.backend.springboot.dto.response.TenantResponse;
 import com.example.apptly.backend.springboot.service.TenantService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;

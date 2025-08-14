@@ -1,7 +1,7 @@
 package com.example.apptly.backend.springboot.service.serviceImpl;
 
-import com.example.apptly.backend.springboot.dto.RoleRequest;
-import com.example.apptly.backend.springboot.dto.RoleResponse;
+import com.example.apptly.backend.springboot.dto.request.RoleRequest;
+import com.example.apptly.backend.springboot.dto.response.RoleResponse;
 import com.example.apptly.backend.springboot.entity.Role;
 import com.example.apptly.backend.springboot.exception.BadRequestException;
 import com.example.apptly.backend.springboot.exception.ResourceNotFoundException;
