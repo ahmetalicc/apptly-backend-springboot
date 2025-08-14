@@ -1,5 +1,6 @@
 package com.example.apptly.backend.springboot.security;
 
+import com.example.apptly.backend.springboot.config.CustomUserDetails;
 import com.example.apptly.backend.springboot.entity.User;
 import com.example.apptly.backend.springboot.exception.ResourceNotFoundException;
 import com.example.apptly.backend.springboot.repository.UserRepository;
@@ -31,9 +32,15 @@ public class JwtAuthFilter extends OncePerRequestFilter {
                 String email = jwtUtil.getEmailFromToken(token);
                 User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found"));
                 if(user != null && user.isActive()){
-                    List<SimpleGrantedAuthority> authorities = List.of(
-                            new SimpleGrantedAuthority(user.getRole().getName()));
-                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(user, null, authorities);
+                    List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(user.getRole().getName()));
+                    CustomUserDetails principal = new CustomUserDetails(
+                            user.getId(),
+                            user.getEmail(),
+                            user.getPassword(),
+                            Boolean.TRUE.equals(user.getIsActive()),
+                            authorities
+                    );
+                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(principal, null, authorities);
                     SecurityContextHolder.getContext().setAuthentication(auth);
                 }
             }
