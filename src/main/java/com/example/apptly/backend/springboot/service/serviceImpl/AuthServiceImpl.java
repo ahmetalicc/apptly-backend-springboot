@@ -29,7 +29,11 @@ public class AuthServiceImpl implements AuthService {
         if(!user.isActive() || !passwordEncoder.matches(authRequest.getPassword(), user.getPassword())){
             throw new BadRequestException("Invalid credentials or inactive user!");
         }
-        String token = jwtUtil.generateToken(user.getEmail(), user.getRole().getName(), user.getTenant() != null ? user.getTenant().getId() : null);
+        String token = jwtUtil.generateToken(
+                user.getId(),
+                user.getEmail(),
+                user.getRole().getName(),
+                user.getTenant() != null ? user.getTenant().getId() : null);
         UserResponse userResponse = userMapper.toResponse(user);
         return new AuthResponse(token, userResponse);
     }
