@@ -1,9 +1,7 @@
 package com.example.apptly.backend.springboot.security;
 
 import com.example.apptly.backend.springboot.config.CustomUserDetails;
-import com.example.apptly.backend.springboot.entity.User;
-import com.example.apptly.backend.springboot.exception.ResourceNotFoundException;
-import com.example.apptly.backend.springboot.repository.UserRepository;
+import io.jsonwebtoken.Claims;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -22,29 +20,41 @@ import java.util.List;
 @RequiredArgsConstructor
 public class JwtAuthFilter extends OncePerRequestFilter {
     private final JwtUtil jwtUtil;
-    private final UserRepository userRepository;
+
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException {
-        String authHeader = request.getHeader("Authorization");
-        if(authHeader != null && authHeader.startsWith("Bearer ")){
-            String token = authHeader.substring(7);
-            if(jwtUtil.validateToken(token)){
-                String email = jwtUtil.getEmailFromToken(token);
-                User user = userRepository.findByEmail(email).orElseThrow(() -> new ResourceNotFoundException("User not found"));
-                if(user != null && user.isActive()){
-                    List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(user.getRole().getName()));
-                    CustomUserDetails principal = new CustomUserDetails(
-                            user.getId(),
-                            user.getEmail(),
-                            user.getPassword(),
-                            Boolean.TRUE.equals(user.getIsActive()),
-                            authorities
-                    );
-                    UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(principal, null, authorities);
-                    SecurityContextHolder.getContext().setAuthentication(auth);
+        try {
+            String authHeader = request.getHeader("Authorization");
+            if (authHeader != null && authHeader.startsWith("Bearer ")) {
+                String token = authHeader.substring(7);
+                Claims claims = jwtUtil.parseClaims(token);
+                if (claims != null) {
+                    String email = claims.getSubject();
+                    String role = claims.get("role", String.class);
+                    Long tenantId = claims.get("tenantId", Long.class);
+                    Long userId = claims.get("userId", Long.class);
+
+                    if (email != null && role != null) {
+                        List<SimpleGrantedAuthority> authorities = List.of(new SimpleGrantedAuthority(role));
+                        CustomUserDetails principal = new CustomUserDetails(
+                                userId,
+                                email,
+                                null,
+                                true,
+                                authorities
+                        );
+                        UsernamePasswordAuthenticationToken auth = new UsernamePasswordAuthenticationToken(principal, null, authorities);
+                        SecurityContextHolder.getContext().setAuthentication(auth);
+
+                        if (tenantId != null) {
+                            TenantContext.setTenantId(tenantId);
+                        }
+                    }
                 }
             }
+            filterChain.doFilter(request, response);
+        } finally {
+            TenantContext.clear();
         }
-        filterChain.doFilter(request, response);
     }
 }

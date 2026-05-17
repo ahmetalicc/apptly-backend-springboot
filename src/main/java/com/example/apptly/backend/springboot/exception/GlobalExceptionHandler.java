@@ -25,4 +25,10 @@ public class GlobalExceptionHandler {
         return ResponseEntity.status(HttpStatus.BAD_REQUEST)
                 .body(ApiResponseUtil.error(exception.getMessage(), HttpStatus.BAD_REQUEST));
     }
+
+    @ExceptionHandler(ForbiddenException.class)
+    public ResponseEntity<ApiResponse<?>> handleForbidden(ForbiddenException exception){
+        return ResponseEntity.status(HttpStatus.FORBIDDEN)
+                .body(ApiResponseUtil.error(exception.getMessage(), HttpStatus.FORBIDDEN));
+    }
 }

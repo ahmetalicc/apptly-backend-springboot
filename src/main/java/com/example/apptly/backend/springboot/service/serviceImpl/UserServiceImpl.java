@@ -13,6 +13,7 @@ import com.example.apptly.backend.springboot.mapper.UserMapper;
 import com.example.apptly.backend.springboot.repository.RoleRepository;
 import com.example.apptly.backend.springboot.repository.TenantRepository;
 import com.example.apptly.backend.springboot.repository.UserRepository;
+import com.example.apptly.backend.springboot.security.TenantSecurity;
 import com.example.apptly.backend.springboot.service.UserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -26,7 +27,9 @@ public class UserServiceImpl implements UserService {
     private final UserRepository userRepository;
     private final UserMapper userMapper;
     private final TenantRepository tenantRepository;
+    private final RoleRepository roleRepository;
     private final PasswordEncoder passwordEncoder;
+    private final TenantSecurity tenantSecurity;
     @Override
     public UserResponse registerUser(UserRequest userRequest) {
         if(userRepository.existsByEmail(userRequest.getEmail())){
@@ -50,7 +53,6 @@ public class UserServiceImpl implements UserService {
         return userMapper.toResponse(user);
     }
 
-    private final RoleRepository roleRepository;
     @Override
     public List<UserResponse> getAllUsers() {
         List<User> users = userRepository.findAll();
@@ -116,6 +118,7 @@ public class UserServiceImpl implements UserService {
     }
     @Override
     public List<UserResponse> getAllUsersByTenant(Long tenantId) {
+        tenantSecurity.requireAccessToTenant(tenantId);
         Tenant tenant = tenantRepository.findById(tenantId).orElseThrow(
                 () -> new ResourceNotFoundException("Tenant not found with id '" + tenantId + "'"));
         List<User> users = userRepository.findAllByTenant(tenant);
