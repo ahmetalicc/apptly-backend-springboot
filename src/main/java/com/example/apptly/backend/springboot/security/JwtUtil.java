@@ -1,6 +1,10 @@
 package com.example.apptly.backend.springboot.security;
 
-import io.jsonwebtoken.*;
+import io.jsonwebtoken.Claims;
+import io.jsonwebtoken.JwtException;
+import io.jsonwebtoken.JwtParser;
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.jsonwebtoken.security.Keys;
 import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Value;
@@ -19,21 +23,18 @@ public class JwtUtil {
     private Long JWT_EXPIRE_TIME;
 
     private Key key;
+    private JwtParser parser;
 
     @PostConstruct
     public void init() {
         byte[] keyBytes = Base64.getDecoder().decode(SECRET_KEY);
         this.key = Keys.hmacShaKeyFor(keyBytes);
+        this.parser = Jwts.parserBuilder().setSigningKey(key).build();
     }
 
-    private JwtParser jwtParser() {
-        return Jwts.parserBuilder()
-                .setSigningKey(key)
-                .build();
-    }
-
-    public String generateToken(String email, String role, Long tenantId) {
+    public String generateToken(Long userId, String email, String role, Long tenantId) {
         HashMap<String, Object> claims = new HashMap<>();
+        claims.put("userId", userId);
         claims.put("role", role);
         claims.put("tenantId", tenantId);
         Date now = new Date();
@@ -48,20 +49,11 @@ public class JwtUtil {
                 .compact();
     }
 
-    public String getEmailFromToken(String token) {
-        return jwtParser().parseClaimsJws(token).getBody().getSubject();
-    }
-
-    public boolean validateToken(String token) {
+    public Claims parseClaims(String token) {
         try {
-            jwtParser().parseClaimsJws(token);
-            return true;
+            return parser.parseClaimsJws(token).getBody();
         } catch (JwtException | IllegalArgumentException e) {
-            return false;
+            return null;
         }
-    }
-
-    public Claims getClaims(String token) {
-        return jwtParser().parseClaimsJws(token).getBody();
     }
 }
