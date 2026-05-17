@@ -1,6 +1,7 @@
 ---
 name: backend-engineer
 description: Apptly Spring Boot backend için multi-tenant izolasyon, JPA/Hibernate modeli, Spring Security/JWT, REST API tasarımı ve servis katmanı uzmanı. Yeni endpoint, entity, migration, security kuralı, tenant izolasyon konularında kullan. Tek satırlık trivial değişiklik için kullanma.
+model: sonnet
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

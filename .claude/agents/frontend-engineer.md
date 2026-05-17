@@ -1,6 +1,7 @@
 ---
 name: frontend-engineer
 description: Apptly Next.js (App Router) frontend için sayfa/bileşen tasarımı, Tailwind UI, form validation, API entegrasyonu, PWA kurulumu, accessibility ve responsive layout uzmanı. web-admin (TENANT_ADMIN/STAFF dashboard) ve web-public (CUSTOMER booking) projeleri için kullan.
+model: sonnet
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

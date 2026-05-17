@@ -1,6 +1,7 @@
 ---
 name: qa-test
 description: Apptly için test stratejisi ve test yazımı uzmanı. Backend tarafında JUnit 5 + Mockito + Testcontainers (PostgreSQL), frontend tarafında Vitest + Playwright (E2E). Yeni feature için unit + integration test yazma, regression coverage, multi-tenant izolasyon test'leri ve CI test guardrails konularında kullan.
+model: sonnet
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 

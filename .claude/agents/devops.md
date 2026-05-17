@@ -1,6 +1,7 @@
 ---
 name: devops
 description: Apptly için Docker, docker-compose, GitHub Actions CI/CD, env yönetimi, hosting (Railway/Render/VPS), monitoring, log aggregation ve repo yapısı/monorepo dönüşümü konularında uzman. Dockerfile, workflow dosyaları, deploy scriptleri için kullan.
+model: sonnet
 tools: Read, Write, Edit, Glob, Grep, Bash
 ---
 
